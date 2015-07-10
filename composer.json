@@ -1,0 +1,27 @@
+{
+    "name": "wjdhollow/antglob",
+    "description": "PHP Ant Glob",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "William Holloway",
+            "email": "wjdhollow@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wjdhollow\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wjdhollow\\": "test/"
+        }
+    }
+}
