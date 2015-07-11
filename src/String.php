@@ -1,6 +1,6 @@
 <?php
 
-namespace Wjdhollow;
+namespace Wjdhollow\Glob;
 
 
 class String

@@ -1,9 +1,8 @@
 <?php
 
-namespace Wjdhollow;
+namespace Wjdhollow\Glob\Test;
 
-
-
+use Wjdhollow\Glob\AntGlob;
 use PHPUnit_Framework_TestCase;
 
 

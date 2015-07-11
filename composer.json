@@ -16,12 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Wjdhollow\\": "src/"
+            "Wjdhollow\\Glob\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Wjdhollow\\": "test/"
+            "Wjdhollow\\Glob\\Test\\": "test/"
         }
     }
 }
