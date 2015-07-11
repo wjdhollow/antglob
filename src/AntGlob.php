@@ -116,7 +116,6 @@ class AntGlob
     public function isMatch($subject)
     {
         $regex = $this->toRegex();
-//        echo "Applying $regex to $subject\n";
         return preg_match($regex, $subject) > 0;
     }
 }
