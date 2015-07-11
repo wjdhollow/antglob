@@ -18,6 +18,9 @@ is to apply a regex. An equivalent regex would be considered 'lazy' as opposed t
 '**' can be used to match multiple directory levels. This can be used to match a whole directory tree, or a file
 anywhere in the directory tree.
 
+As a shorthand, any pattern ending in '/' has a '**' appended to it. Example, 'mydir'
+matches a directory named 'mydir', while 'mydir/' matches all files in the 'mydir' directory tree.
+
 
 
 
