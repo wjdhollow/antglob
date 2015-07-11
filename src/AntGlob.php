@@ -21,13 +21,13 @@ class AntGlob
     public function getBasePath()
     {
         if (!String::startsWith('/', $this->glob)) {
-            return '.';
+            return '';
         }
         $pos = 0;
         $arr = str_split($this->glob);
         $size = count($arr);
-        for ($i = 0; $i < $size; $i++) {
 
+        for ($i = 0; $i < $size; $i++) {
             if ($arr[$i] == '*') {
                 break;
             }
@@ -35,6 +35,7 @@ class AntGlob
                 $pos = $i;
             }
         }
+
         return substr($this->glob, 0, $pos + 1);
     }
 
@@ -43,7 +44,8 @@ class AntGlob
      */
     public function getRelative()
     {
-        if ($this->getBasePath() == '.') {
+        $basePath = $this->getBasePath();
+        if (empty($basePath)) {
             return $this->glob;
         }
         else {
