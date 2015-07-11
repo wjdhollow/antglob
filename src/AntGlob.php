@@ -12,6 +12,10 @@ class AntGlob
      */
     public function __construct($glob)
     {
+        if (String::endsWith('/', $glob)) {
+            $glob .= '**';
+        }
+
         $this->glob = $glob;
     }
 
@@ -60,11 +64,7 @@ class AntGlob
      */
     public function toRegex()
     {
-        $regex = $this->convertGlobSymbolsToRegex($this->getRelative());
-
-        if (String::endsWith('/', $regex)) {
-            $regex = $regex . '.*';
-        }
+        $regex = '/^' . $this->convertGlobSymbolsToRegex($this->glob) . '$/';
 
         return $regex;
     }
@@ -107,5 +107,16 @@ class AntGlob
         }
 
         return $regex;
+    }
+
+    /**
+     * @param string $subject
+     * @return bool
+     */
+    public function isMatch($subject)
+    {
+        $regex = $this->toRegex();
+//        echo "Applying $regex to $subject\n";
+        return preg_match($regex, $subject) > 0;
     }
 }

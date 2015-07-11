@@ -11,29 +11,47 @@ class AntGlobTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @param string $pattern
-     * @param string $expected
+     * @param string[] $pattern
+     * @param string[] $hits
+     * @param string[] $misses
      *
      * @dataProvider testToRegexReturnsExpected
      *
      */
-    public function testCtr($pattern, $expected)
+    public function testIsMatch($pattern, $hits, $misses)
     {
-        $this->assertEquals(
-            $expected,
-            (new AntGlob($pattern))->toRegex()
-        );
+        $glob = new AntGlob($pattern, true);
+        foreach ($hits as $hit) {
+            $this->assertTrue($glob->isMatch($hit));
+        }
+        foreach ($misses as $miss) {
+            $this->assertFalse($glob->isMatch($miss));
+        }
     }
 
     public function testToRegexReturnsExpected()
     {
         return [
-            ['coverage.xml', 'coverage\.xml'],
-            ['**/scala/copy_of_cobertura.xml', '\/?(\/.*?\/)?scala\/copy_of_cobertura\.xml'],
-            ['/dir/file.txt', 'file\.txt'],
-            ['/dir/sub/**/inner/foo.txt', '\/?(\/.*?\/)?inner\/foo\.txt'],
-            ['scala/sub/', 'scala\/sub\/.*'],
-            ['b?d/file.txt', 'b.d\/file\.txt'],
+            [
+                '**/CVS/*',
+                ['CVS/Repository', 'org/apache/CVS/Entries', 'org/apache/jakarta/tools/ant/CVS/Entries'],
+                ['org/apache/CVS/foo/bar/Entries'],
+            ],
+            [
+                'org/apache/jakarta/**',
+                ['org/apache/jakarta/tools/ant/docs/index.html', 'org/apache/jakarta/test.xml'],
+                ['org/apache/xyz.java'],
+            ],
+            [
+                'org/apache/**/CVS/*',
+                ['org/apache/CVS/Entries', 'org/apache/jakarta/tools/ant/CVS/Entries'],
+                ['org/apache/CVS/foo/bar/Entries'],
+            ],
+            [
+                '**/test/**',
+                ['org/test/core', 'test/file.xml'],
+                ['test.txt']
+            ]
         ];
     }
 }

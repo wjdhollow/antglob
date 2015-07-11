@@ -16,10 +16,10 @@ class AntGlobSymbol
     public static function symbolRegexMap()
     {
         return [
-            AntGlobSymbol::STAR => '^[\/]*',
+            AntGlobSymbol::STAR => '[^\/]*',
             AntGlobSymbol::QUESTION_MARK => '.',
-            AntGlobSymbol::STAR_STAR => '\/?(\/.*?\/)?',
-            AntGlobSymbol::STAR_STAR_SLASH => '\/?(\/.*?\/)?',
+            AntGlobSymbol::STAR_STAR => '(.*?)*',
+            AntGlobSymbol::STAR_STAR_SLASH => '(\/?.*?\/)*',
         ];
     }
 }
