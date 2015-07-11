@@ -81,8 +81,11 @@ class AntGlob
         $keys = array_keys($map);
 
         while ($i < $length) {
-
-            if ($i < $length - 3 && in_array(substr($escaped, $i, 4), $keys)) {
+            if ($i < $length - 5 && in_array(substr($escaped, $i, 6), $keys)) {
+                $symbolKey = substr($escaped, $i, 6);
+                $replacement = $map[$symbolKey];
+            }
+            else if ($i < $length - 3 && in_array(substr($escaped, $i, 4), $keys)) {
                 $symbolKey = substr($escaped, $i, 4);
                 $replacement = $map[$symbolKey];
             }

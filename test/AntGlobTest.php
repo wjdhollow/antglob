@@ -29,9 +29,9 @@ class AntGlobTest extends PHPUnit_Framework_TestCase
     {
         return [
             ['coverage.xml', 'coverage\.xml'],
-            ['**/scala/copy_of_cobertura.xml', '.*\/scala\/copy_of_cobertura\.xml'],
+            ['**/scala/copy_of_cobertura.xml', '\/?(\/.*?\/)?scala\/copy_of_cobertura\.xml'],
             ['/dir/file.txt', 'file\.txt'],
-            ['/dir/sub/**/inner/foo.txt', '.*\/inner\/foo\.txt'],
+            ['/dir/sub/**/inner/foo.txt', '\/?(\/.*?\/)?inner\/foo\.txt'],
             ['scala/sub/', 'scala\/sub\/.*'],
             ['b?d/file.txt', 'b.d\/file\.txt'],
         ];
