@@ -66,7 +66,8 @@ class AntGlob
         $names = [];
         $objects = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($dir),
-            \RecursiveIteratorIterator::SELF_FIRST);
+            \RecursiveIteratorIterator::SELF_FIRST,
+            \RecursiveIteratorIterator::CATCH_GET_CHILD);
         foreach ($objects as $name => $object) {
             if ($this->isMatch($name)) {
                 $names[] = $name;
