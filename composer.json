@@ -1,6 +1,8 @@
 {
     "name": "wjdhollow/antglob",
     "description": "PHP Ant Glob",
+    "keywords": ["wjdhollow", "php", "glob"],
+    "homepage": "https://github.com/wjdhollow/antglob",
     "license": "MIT",
     "authors": [
         {
