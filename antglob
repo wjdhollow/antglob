@@ -1,7 +1,17 @@
 #!/usr/bin/env php
 <?php
 
-require_once(dirname(dirname(__FILE__)) . '/vendor/autoload.php');
+$installed_vendor_path = dirname(dirname(dirname(dirname(__FILE__)))) . '/autoload.php';
+$local_vendor_path = dirname(__FILE__) . '/vendor/autoload.php';
+
+// If installed, use top level path, otherwise use local path
+if (file_exists(($installed_vendor_path))) {
+    require_once($installed_vendor_path);
+}
+else if (file_exists($local_vendor_path)) {
+    require_once($local_vendor_path);
+}
+
 
 use \Wjdhollow\Glob\AntGlob;
 
