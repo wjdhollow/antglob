@@ -21,6 +21,7 @@ anywhere in the directory tree.
 As a shorthand, any pattern ending in '/' has a '**' appended to it. Example, 'mydir'
 matches a directory named 'mydir', while 'mydir/' matches all files in the 'mydir' directory tree.
 
+To install: `composer require wjdhollow/antglob`
 
 Command line utility: `bin/antglob <directory> <glob_pattern>`
 
