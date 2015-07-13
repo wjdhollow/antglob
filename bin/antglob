@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+require_once(dirname(dirname(__FILE__)) . '/vendor/autoload.php');
+
+use \Wjdhollow\Glob\AntGlob;
+
+$directory = $argv[1];
+$pattern = $argv[2];
+
+$glob = new AntGlob($pattern);
+
+$names = $glob->inDirectory($directory);
+foreach ($names as $name) {
+    echo $name . PHP_EOL;
+}
+exit(0);

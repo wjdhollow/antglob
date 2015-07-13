@@ -58,13 +58,45 @@ class AntGlob
     }
 
     /**
+     * @param string $dir
+     * @return string[]
+     */
+    public function inDirectory($dir)
+    {
+        $names = [];
+        $objects = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($dir),
+            \RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($objects as $name => $object) {
+            if ($this->isMatch($name)) {
+                $names[] = $name;
+            }
+        }
+
+        return $names;
+    }
+
+    /**
+     * @param string $subject
+     * @return bool
+     */
+    public function isMatch($subject)
+    {
+        $regex = $this->toRegex();
+        return preg_match($regex, $subject) > 0;
+    }
+
+    /**
      * This method converts the glob pattern to a regex
      *
      * @return string
      */
     public function toRegex()
     {
-        $regex = '/^' . $this->convertGlobSymbolsToRegex($this->glob) . '$/';
+        /*
+         * Anchor regex and add special condition for current directory\
+         */
+        $regex = '/^(\.\/)?' . $this->convertGlobSymbolsToRegex($this->glob) . '$/';
 
         return $regex;
     }
@@ -109,13 +141,7 @@ class AntGlob
         return $regex;
     }
 
-    /**
-     * @param string $subject
-     * @return bool
-     */
-    public function isMatch($subject)
-    {
-        $regex = $this->toRegex();
-        return preg_match($regex, $subject) > 0;
-    }
+
+
+
 }

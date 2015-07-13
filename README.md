@@ -22,5 +22,17 @@ As a shorthand, any pattern ending in '/' has a '**' appended to it. Example, 'm
 matches a directory named 'mydir', while 'mydir/' matches all files in the 'mydir' directory tree.
 
 
+Command line utility: `bin/antglob <directory> <glob_pattern>`
+
+API:
+
+`$glob = new AntGlob($pattern);`
+
+`$matches = $glob->isMatch($name);`
+
+`$pathnames = $glob->inDirectory($directory);`
+
+
+
 
 
