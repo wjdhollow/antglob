@@ -69,8 +69,8 @@ class AntGlob
             \RecursiveIteratorIterator::SELF_FIRST,
             \RecursiveIteratorIterator::CATCH_GET_CHILD);
         foreach ($objects as $name => $object) {
-            if ($this->isMatch($name)) {
-                $names[] = $name;
+            if ($this->isMatch($this->getRelativePath($dir, $name))) {
+                $names[] = realpath($name);
             }
         }
 
@@ -142,7 +142,21 @@ class AntGlob
         return $regex;
     }
 
-
+    /**
+     * @param $dir
+     * @param $name
+     * @return mixed
+     */
+    public function getRelativePath($dir, $name)
+    {
+        $relative = $name;
+        $pos = strpos($name, $dir);
+        if (!($dir == '.') && $pos !== false) {
+            $relative = substr_replace($name, '', $pos, strlen($dir));
+            return $relative;
+        }
+        return $relative;
+    }
 
 
 }
