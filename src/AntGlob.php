@@ -149,9 +149,10 @@ class AntGlob
      */
     public function getRelativePath($dir, $name)
     {
+        $dir = rtrim($dir, '/') . '/';
         $relative = $name;
         $pos = strpos($name, $dir);
-        if (!($dir == '.') && $pos !== false) {
+        if (!($dir == './') && $pos !== false) {
             $relative = substr_replace($name, '', $pos, strlen($dir));
             return $relative;
         }
